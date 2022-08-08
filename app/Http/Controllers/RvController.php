@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\RvResource;
 use App\Models\Rv;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class RvController extends Controller
 {
     //liste des rvs
     public function getAllRv(){
-        return response()->json(Rv::all(), 200);
+        return response()->json(RvResource::collection(Rv::all()) , 200);
     }
 
     //Retourner un rv
@@ -62,5 +63,5 @@ class RvController extends Controller
 
     }
 
-    
+
 }

@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Medecin;
+use App\Models\Patient;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Rv extends Model
 {
@@ -24,7 +26,11 @@ class Rv extends Model
     }
 
     public function medecins(){
-        return $this->belongsTo('App\Medecin');
+        return $this->belongsTo(Medecin::class);
+    }
+
+    public function patients(){
+        return $this->belongsTo(Patient::class);
     }
 
     public function users(){

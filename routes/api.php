@@ -27,6 +27,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //route publique
 
 Route::post('user/login', [AuthController::class, 'login']);
+Route::get('rv/liste', [RvController::class, 'getAllRv']);
+
 
 //Route privée
 
@@ -86,7 +88,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     //____________________________ Rv ___________________________________
 
-    Route::get('rv/liste', [RvController::class, 'getAllRv']);
 
     Route::get('rv/{id}', [RvController::class, 'getRvById']);
 
