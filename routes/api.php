@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RvController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MedecinController;
+use App\Http\Controllers\PatientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,6 +17,7 @@ use App\Http\Controllers\MedecinController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -24,8 +26,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 //route publique
 
-Route::put('user/login', [AuthController::class, 'login']);
-
+Route::post('user/login', [AuthController::class, 'login']);
 
 //Route privée
 
@@ -66,6 +67,22 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('medecin/rechercher/{prenom}', [MedecinController::class, 'searchMedecin']);
 
     //____________________________ End Medecins ___________________________________
+
+    //____________________________ Patient ___________________________________
+
+    Route::get('patients/liste', [PatientController::class, 'getAllPatients']);
+
+    Route::get('patient/{id}', [PatientController::class, 'getPatientById']);
+
+    Route::post('patient/ajout', [PatientController::class, 'addPatient']);
+
+    Route::put('patient/modifier/{id}', [PatientController::class, 'updatePatient']);
+
+    Route::delete('patient/supprimer/{id}', [PatientController::class, 'deletePatient']);
+
+    Route::get('patient/rechercher/{prenom}', [PatientController::class, 'searchPatient']);
+
+    //____________________________ End Patient ___________________________________
 
     //____________________________ Rv ___________________________________
 

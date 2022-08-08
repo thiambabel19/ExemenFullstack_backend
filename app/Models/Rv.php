@@ -9,13 +9,14 @@ class Rv extends Model
 {
     use HasFactory;
 
-    protected $fillable = array('medecins_id','user_id', 'libelle', 'date');
+    protected $fillable = array('medecins_id','user_id', 'libelle', 'date', 'patients_id');
 
     public static $rules = array(
         'medecins_id' => 'required|integer',
         'user_id' => 'required|bigInteger',
         'libelle' => 'required|min:20',
-        'date' => 'required|min:9'
+        'date' => 'required|min:9',
+        'patients_id' => 'required|integer'
     );
 
     public function rendezvous(){
